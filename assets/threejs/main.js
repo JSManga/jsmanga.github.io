@@ -22,7 +22,7 @@
         box.castShadow = true;
         scene.add(box);
         ret.push(box);
-        
+
         return n == 0
             ? ret
             : add_boxes(scene, n-1, ret);
@@ -39,7 +39,7 @@
         const plane_material = new THREE.MeshLambertMaterial({
             color: 0xbbccff,
             side: THREE.DoubleSide
-        });    
+        });
         const plane = new THREE.Mesh(plane_geometry, plane_material);
         plane.receiveShadow = true;
         plane.rotation.x = 90 * Math.PI / 180;
@@ -51,8 +51,8 @@
         light.position.set(0, 100, 30);
         light.castShadow = true;
         scene.add(light);
-        
-        const width  = 600;
+
+        const width  = document.getElementById("memo").clientWidth;
         const height = 300;
         const fov    = 45;
         const aspect = width / height;
@@ -60,18 +60,19 @@
         const far    = 1000;
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         camera.position.set(100, 100, 300);
-        
+
         const axis = new THREE.AxisHelper(1000);
         axis.position.set(0,0,0);
         scene.add(axis);
-        
+
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(width, height);
         renderer.setClearColor(0xeeeeee);
         renderer.shadowMapEnabled = true;
-        document.body.appendChild(renderer.domElement);
+        const memo_node = document.getElementById("memo_3js");
+        memo_node.appendChild(renderer.domElement);
 
-        
+
         // mouse control
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -85,7 +86,7 @@
                 box.rotation.y + 0.5 * Math.random(),
                 box.rotation.z + 0.01 * Math.random()
             ));
-            
+
             renderer.render(scene, camera);
             controls.update();
         };
