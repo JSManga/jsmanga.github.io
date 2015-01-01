@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+  <script type="text/javascript; version=1.8">
+
+  // ここに色々JavaScriptを書く
+
+  "use strict"; // エラーを表示してくれるモード
+
+  const square = x => x * x;
+  const loop = _ => loop();
+  const takeuchi = (x, y, z) =>
+    x <= y
+    ? y
+    : takeuchi(takeuchi(x-1, y, z),
+               takeuchi(y-1, z, x),
+               takeuchi(z-1, x, y));
+  </script>
+</body>
+</html>
